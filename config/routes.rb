@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
   resources :trees do
-    post :cut_request
+    post :cut_request, on: :collection
+    get :requests, on: :collection
+    get :ledger, on: :collection
+    post :approve, on: :collection
   end
   resources :lands
   resources :certificates

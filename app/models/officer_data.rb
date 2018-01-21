@@ -10,5 +10,5 @@ class OfficerData
   field :reg_no, type: String
   field :ppk, type: String
 
-  belongs_to :user
+  embedded_in :user
 end

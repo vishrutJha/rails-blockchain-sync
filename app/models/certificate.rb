@@ -6,7 +6,6 @@ class Certificate
   field :certifiable_id, type: String
   field :auth_token, type: String
 
-  belongs_to :officer, counter_cache: true 
   belongs_to :certifiable, polymorphic: true
 
   before_create :calc_hash

@@ -11,6 +11,7 @@ gem 'mongoid', '~> 6.1.0'
 gem 'bson_ext'
 gem 'faker'
 gem 'bcrypt'
+# gem 'httparty'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

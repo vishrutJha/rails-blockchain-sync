@@ -11,7 +11,7 @@ class BlockChain
 
   def compute_hash_with_proof_of_work
     sha = Digest::SHA256.new
-    return sha.hexdigest
+    self.computed_hash = sha.hexdigest
   end
 
   def self.genesis(data = "Genesis")
@@ -19,10 +19,12 @@ class BlockChain
   end
 
   def self.ledger(b_index)
+    puts "Requesting Ledger Data Sync"
     self.where(b_index: b_index)
   end
 
   def self.initiate(b_index, data)
+    puts "Adding Data to BlockChain from Genesis"
     b = BlockChain.new(
       b_index: b_index,
       data: data,
@@ -31,7 +33,8 @@ class BlockChain
     b.save
   end
   
-  def self.modify(b_index, data, previous_hash)
+  def self.modify(b_index, data, previous_hash)    
+    puts "Adding a new Block to Existing Chain"
     b = BlockChain.new(
       b_index: b_index,
       data: data,

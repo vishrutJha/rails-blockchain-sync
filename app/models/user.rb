@@ -22,13 +22,14 @@ class User
   has_many :vehicle_registries
   has_many :lands
   has_many :trees
-  has_one :officer_data
+  has_many :certificates, as: :certifiable
+  embeds_one :officer_datum
+
+  accepts_nested_attributes_for :officer_datum, allow_destroy: true
 
   before_create :calc_hash
   after_create :generate_keys
   before_save :set_password, if: :password
-
-  accepts_nested_attributes_for :officer_data
 
   def generate_keys
     rsa_key = OpenSSL::PKey::RSA.new(2048)
