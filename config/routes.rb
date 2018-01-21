@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  resources :trees
+  resources :trees do
+    post :cut_request
+  end
   resources :lands
   resources :certificates
   resources :officers

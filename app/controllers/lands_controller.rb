@@ -31,6 +31,6 @@ class LandsController < ApplicationController
 
   protected
     def land_params
-      params.require(:land).permit(:size, :allocation, :liability, :latitude, :longitude)
+      params.require(:land).permit(:size, :allocation, :liability, :latitude, :longitude, :user_type)
     end
 end

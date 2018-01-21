@@ -10,19 +10,32 @@ class Tree
   field :weight, type: Float
   field :make, type: String
   field :bc_index
+  field :price, type: Float
+  field :status, type: String
 
   belongs_to :farmer, class_name: "User", foreign_key: :farmer_id
   belongs_to :land
 
-  after_save :block_the_chain
-  before_save :update_ledger
+  has_many :certificates, as: :certifiable
+
+  after_save :update_ledger
+  after_create :initiate_block
+
+  def oid
+    self.id.to_s
+  end
+
+  def ledger
+    BlockChain.ledger(self.oid).last
+  end
 
   private
-    def block_the_chain
-      BlockChain.commit(user_key, bc_index, self.to_a)
+
+    def initiate_block
+      BlockChain.initiate(self.oid, self.attributes)
     end
 
     def update_ledger
-      BlockChain.retreive(user_key)
+      BlockChain.modify(self.oid, self.attributes, ledger.previous_hash)
     end
 end

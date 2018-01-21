@@ -2,7 +2,6 @@ class ApplicationController < ActionController::API
   before_action :set_user, except: :users_controller
 
   private
-
     def set_user
       @user = User.where(auth_token: params[:auth_token]).first rescue unauthorized
     end

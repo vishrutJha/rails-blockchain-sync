@@ -24,6 +24,15 @@ class UsersController < ApplicationController
   end
 
   def gen_keys
+    unless @user.key_pair.blank?
+      if @user.generate_keys
+        send_data(@user.key_pair, filename: "#{@user.name}_key_file}")
+      else
+        render json: { errors: @user, message: "Failure in Generating new key pair" }
+      end
+    else
+      render json: { public_key: @user.public_key }
+    end
   end
 
 

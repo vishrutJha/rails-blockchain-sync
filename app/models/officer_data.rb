@@ -1,9 +1,7 @@
-class Officer
+class OfficerData
   include Mongoid::Document
   include Mongoid::Timestamps
   
-  field :name, type: String
-  field :last_name, type: String
   field :designation, type: String
   field :organization, type: String
   field :department, type: String
@@ -12,5 +10,5 @@ class Officer
   field :reg_no, type: String
   field :ppk, type: String
 
-  has_many :certificates, dependent: :destroy
+  belongs_to :user
 end

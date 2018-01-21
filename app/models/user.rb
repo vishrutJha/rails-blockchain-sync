@@ -22,9 +22,33 @@ class User
   has_many :vehicle_registries
   has_many :lands
   has_many :trees
+  has_one :officer_data
 
   before_create :calc_hash
+  after_create :generate_keys
   before_save :set_password, if: :password
+
+  accepts_nested_attributes_for :officer_data
+
+  def generate_keys
+    rsa_key = OpenSSL::PKey::RSA.new(2048)
+    cipher =  OpenSSL::Cipher::Cipher.new('des3')
+    private_key = rsa_key.to_pem(cipher,'password')
+    public_key = rsa_key.public_key.to_pem
+    self.user_keys = {
+      public: public_key, 
+      private: private_key
+    }
+    self.save
+  end
+
+  def key_pair
+    key_pair = (user_keys["private"] + user_keys["public"] rescue nil)
+  end
+
+  def public_key
+    user_keys["public"]
+  end
 
   def set_password
     sha1_password = Digest::SHA1.hexdigest(password)
