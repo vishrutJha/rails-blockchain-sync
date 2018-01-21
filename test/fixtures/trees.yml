@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  res_id: MyString
+  farmer: one
+  girth: 1.5
+  height: 1.5
+  weight: 1.5
+  make: MyString
+  land: one
+
+two:
+  res_id: MyString
+  farmer: two
+  girth: 1.5
+  height: 1.5
+  weight: 1.5
+  make: MyString
+  land: two

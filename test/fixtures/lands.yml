@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  size: 1.5
+  allocation: MyString
+  liability: MyString
+
+two:
+  user: two
+  size: 1.5
+  allocation: MyString
+  liability: MyString

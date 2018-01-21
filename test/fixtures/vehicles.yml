@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  vehicle_registry: 
+  reg_no: MyString
+  capacity: 1.5
+
+two:
+  vehicle_registry: 
+  reg_no: MyString
+  capacity: 1.5
